@@ -1,9 +1,16 @@
-import './App.css';
+import React from "react";
+import './index.css';
+import {Routes, Route} from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Home from './Routes/Home';
 
 function App() {
   return (
     <div className="App"> 
-      Law By Code
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home/>} />
+      </Routes>
     </div>
   );
 }
