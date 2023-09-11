@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Test = () => {
-    const [key, setkey] = useState('');
+  const [key, setkey] = useState();
   const [value, setValue] = useState('');
   const [maxElement,setMaxElement]= useState('');
 
@@ -9,7 +9,7 @@ const Test = () => {
     event.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const response = await fetch("http://localhost:3001/insert", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/insert`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ const Test = () => {
       });
 
       if (response.ok) {
-        setValue('');
         setkey('');
+        setValue('');
         
       } else {
         console.error('Error inserting pair into max heap');
@@ -31,7 +31,7 @@ const Test = () => {
 
   const HandleDelete = async () => {
     try {
-      const response = await fetch("http://localhost:3001/delete" , {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/delete`, {
         method: 'GET',
       });
       if (response.ok) {
@@ -45,14 +45,6 @@ const Test = () => {
     }
   };
   
-//   fetch('http://localhost:3001/getMaxHeap')
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log('MaxHeap array:', data.maxHeap);
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//     });
   return (
     <>
     <form onSubmit={HandleInsert}>
@@ -60,7 +52,7 @@ const Test = () => {
       type="number" 
       placeholder="priority" 
       value={key} 
-      onChange={(e)=> setkey(e.target.value)} 
+      onChange={(e)=> setkey(e.target.valueAsNumber)} 
       />
       <input 
       type="text" 
@@ -71,7 +63,7 @@ const Test = () => {
       <button type="submit">insert</button>
     </form>
     <button onClick={HandleDelete}>delete</button>
-    {maxElement && <p>{maxElement.key}&nbsp;{maxElement.value}</p>}
+    {maxElement && <p>{maxElement}</p>}
     </>
   );
 }
