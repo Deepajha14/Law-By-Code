@@ -1,5 +1,5 @@
-import React from 'react'
-import '../CSS/NavbarStyle.css'
+import React from "react";
+import "../CSS/NavbarStyle.css";
 
 export default function Navbar() {
   var showMenu = () => {
@@ -17,7 +17,9 @@ export default function Navbar() {
                 <li className="link">Home</li>
                 <li className="link">Case Records</li>
                 <li className="link">File A Case</li>
-                <li className="link">Track A Case</li>
+                <a href="/trackCase">
+                  <li className="link">Track A Case</li>
+                </a>
             </ul>
             <div className="hamburger" onClick={showMenu}>
             <span className="bar"></span>
@@ -25,5 +27,5 @@ export default function Navbar() {
             <span className="bar"></span>
           </div>
     </nav>
-  )
+  );
 }

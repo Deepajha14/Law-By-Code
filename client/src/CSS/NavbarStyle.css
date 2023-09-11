@@ -13,8 +13,8 @@
 }
 
 .navLinks {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 .link {
@@ -26,6 +26,10 @@
 .link:hover {
     color: #E6F3FA;
     scale: 1.1;
+}
+
+a {
+  color: black;
 }
 
 .hamburger {
