@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Test = () => {
-    const [schedulingFactor, setSchedulingFactor] = useState();
+  const [schedulingFactor, setSchedulingFactor] = useState();
   const [caseId, setCaseId] = useState('');
   const [maxElement,setMaxElement]= useState('');
 
@@ -9,7 +9,7 @@ const Test = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/insert", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/insert`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const Test = () => {
 
   const HandleDelete = async () => {
     try {
-      const response = await fetch("http://localhost:3001/delete" , {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/delete`, {
         method: 'GET',
       });
       if (response.ok) {
@@ -44,6 +44,7 @@ const Test = () => {
       console.error('Error extracting max element from max heap', error);
     }
   };
+  
   return (
     <>
     <form onSubmit={HandleInsert}>
@@ -55,14 +56,15 @@ const Test = () => {
       />
       <input 
       type="text" 
-      placeholder="Case Name" 
+      placeholder="Case ID" 
       value={caseId} 
       onChange={(e)=> setCaseId(e.target.value)} 
       />
       <button type="submit">insert</button>
     </form>
     <button onClick={HandleDelete}>delete</button>
-    {maxElement && <p>{maxElement.schedulingFactor}&nbsp;{maxElement.caseId}</p>}
+
+    {maxElement && <p>{maxElement}</p>}
     </>
   );
 }
