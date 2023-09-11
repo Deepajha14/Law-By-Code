@@ -1,0 +1,57 @@
+.mainBox {
+  display: flex;
+  justify-content: center;
+}
+.trackCase {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  width: 100vw;
+  min-height: 75vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.heading {
+  background-color: #7beca8;
+  padding: 15px 45px;
+}
+.searchBar {
+  display: flex;
+  justify-content: center;
+  padding: 40px 2px;
+}
+.searchIcon {
+  height: 50px;
+  background-color: #e0e0e0;
+  padding-left: 7px;
+  width: 35px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px 0 0 4px;
+}
+input {
+  width: 30vw;
+  height: 50px;
+  text-align: center;
+  background-color: #e0e0e0;
+  border: 1px solid #e0e0e0;
+}
+.trackButton {
+  height: 50px;
+  width: 8vw;
+  background-color: #853ff9;
+  color: white;
+  border: 1px solid #7235ed;
+  border-radius: 0 4px 4px 0;
+}
+.caseDetails {
+  padding: 0 65px 25px;
+}
+.caseDetails h3 {
+  margin-bottom: 20px;
+}
+.trackButton:hover {
+  background-color: #5520bd;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
