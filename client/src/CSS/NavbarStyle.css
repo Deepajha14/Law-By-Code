@@ -1,15 +1,15 @@
 .navbar {
-  height: 60px;
-  width: 100vw;
-  background: #7bc3ec;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 70px 0;
-  font-size: 16px;
-  font-weight: 600;
-  white-space: nowrap;
-  position: sticky;
+    height: 60px;
+    width: 100vw;
+    background: #7BC3EC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 70px 0;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    position: fixed;
 }
 
 .navLinks {
@@ -18,15 +18,95 @@
 }
 
 .link {
-  margin-left: 20px;
-  transition: all 0.2s ease-in-out;
+    width: 100%;
+    margin-left: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .link:hover {
-  color: #e6f3fa;
-  /* text-decoration: underline; */
+    color: #E6F3FA;
+    scale: 1.1;
 }
 
 a {
   color: black;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        padding: 0 30px;
+    }
+
+    .navLinks{
+        flex-direction: column;
+        align-items: center;
+        background-color: #7BC3EC;
+        position: fixed;
+        top: 60px;
+        right: -300px;
+        height: 92vh;
+        width: 250px;
+        justify-content: flex-start;
+        transition: 0.6s all ease-in-out;
+        gap: 30px;
+        padding: 60px 15px;
+    }
+
+    .navLinksShow{
+        right: 0;
+    }
+
+    .hamburger{
+        display: block;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .bar{
+        display: block;
+        height: 3px;
+        width: 25px;
+        margin: 5px;
+        border-radius: 5px;
+        background-color: black;
+        transition: 0.4s;
+    }
+
+    .barOne{
+        rotate: -45deg;
+        position: relative;
+        top: 8px;
+        transition: 0.4s;
+    }
+
+    .barTwo{
+        display: none;
+    }
+
+    .barThree{
+        position: relative;
+        rotate: 45deg;
+        transition: 0.4s;
+    }
+
+    .link {
+        height: 50px;
+        text-align: center;
+        margin: 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .link:hover {
+        background-color: #E6F3FA;
+        color: black;
+    }
 }
