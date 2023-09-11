@@ -1,63 +1,81 @@
+const Schedule=require("./models/Schedules")
+
 // creating class for max heap
 class MaxHeap{
     //initialising heap array
-    constructor()
-    {
+    constructor(){
         this.heap=[];  
     }
 
     //inserting a new pair into the heap
-    insert(key,value)
-    {
-        const newNode= {key, value};  //object of pair to be inserted into the heap
+    insert=async(schedulingFactor,caseID)=>{
+        const newNode= {schedulingFactor, caseID};  //object of pair to be inserted into the heap
+        
+        const queueRecord =await Schedule.findOne();
+        if(queueRecord)
+            this.heap =queueRecord.priorityQueue;
+      
         this.heap.push(newNode);
         this.heapifyUp(this.heap.length - 1); //heap rearranging itself
+        
+        if(queueRecord){
+            await Schedule.updateOne({_id:queueRecord._id},{$set:{priorityQueue:this.heap}});
+        }
+        else{
+            await Schedule.create({priorityQueue: this.heap});
+        }
     }
 
     //How heap rearranges itself after insertion
-    heapifyUp(index)
-    {
-        while(index>0)
-        {
+    heapifyUp(index){
+        while(index>0){
             const parentIndex= Math.floor((index-1)/2);
-            if(this.heap[index].key > this.heap[parentIndex].key )
-            {
+            if(this.heap[index].schedulingFactor > this.heap[parentIndex].schedulingFactor ){
                 this.swap(index,parentIndex);
                 index=parentIndex;
             }
-            else
-            {
+            else{
                 break;
             }
         }
     }
 
     // Deleting the root element
-    remove()
-    {
+    remove=async()=>{
+        const queueRecord =await Schedule.findOne();
+        
+        if(queueRecord)
+            this.heap = queueRecord.priorityQueue;
+            
         if(this.heap.length === 0)
-        { return null; }
+            return null; 
 
-        if(this.heap.length === 1)
-        { return this.heap.pop(); }
+        if(this.heap.length === 1){
+            const root=this.heap.pop();
+            await Schedule.updateOne({_id:queueRecord._id},{$set:{priorityQueue:this.heap}});
+            return root.schedulingFactor; 
+        }
 
         const root = this.heap[0];
         this.heap[0]=this.heap.pop();
         this.heapifyDown(0);
-        return root;
+
+        await Schedule.updateOne({_id:queueRecord._id},{$set:{priorityQueue:this.heap}});
+        
+        return root.schedulingFactor;
     }
 
-    //How heap rearranges itself after deletion
+    //how heap rearranges itself after deletion
     heapifyDown(index) {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
         let largestIndex = index;
     
-        if (leftChildIndex < this.heap.length && this.heap[leftChildIndex].key > this.heap[largestIndex].key) {
+        if (leftChildIndex < this.heap.length && this.heap[leftChildIndex].schedulingFactor > this.heap[largestIndex].schedulingFactor) {
             largestIndex = leftChildIndex;
         }
     
-        if (rightChildIndex < this.heap.length && this.heap[rightChildIndex].key > this.heap[largestIndex].key) {
+        if (rightChildIndex < this.heap.length && this.heap[rightChildIndex].schedulingFactor > this.heap[largestIndex].schedulingFactor) {
             largestIndex = rightChildIndex;
         }
     
@@ -68,7 +86,7 @@ class MaxHeap{
         }
     }
 
-    // Swapping two index keys
+    // Swapping two index pairs
     swap(index1, index2)
     {
         const temp=this.heap[index1];
@@ -77,4 +95,4 @@ class MaxHeap{
     }
 }
 
-export default MaxHeap
+module.exports = MaxHeap;
