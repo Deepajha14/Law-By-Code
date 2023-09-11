@@ -3,7 +3,7 @@ import "../CSS/TrackCaseStyle.css";
 import { RiSearchLine } from "react-icons/ri";
 
 function TrackCase() {
-  const [caseData,setCaseData] = useState({});
+  const [caseData, setCaseData] = useState({});
   const obj = {
     name: "Arushi",
     age: "34",
@@ -14,10 +14,10 @@ function TrackCase() {
     mobileNumber: "9234667007",
   };
 
-  const handleClick = (event) =>{
+  const handleClick = (event) => {
     setCaseData(obj);
     event.preventDefault();
-  }
+  };
 
   return (
     <div className="mainBox">
@@ -40,11 +40,13 @@ function TrackCase() {
         <div className="caseDetails">
           <h2>Case Details</h2>
           <div className="caseData">
-            {Object.entries(caseData).map((key) => {
+            {Object.entries(caseData).map((caseDataElement, value) => {
               return (
-                <div className="caseDataElement">
-                  <span className="caseDataHeading">{key[0]} : </span>
-                  <span className="caseDataValue">{key[1]}</span>
+                <div className="caseDataElement" key={caseDataElement[0]}>
+                  <span className="caseDataHeading">
+                    {caseDataElement[0]} :{" "}
+                  </span>
+                  <span className="caseDataValue">{caseDataElement[1]}</span>
                 </div>
               );
             })}
