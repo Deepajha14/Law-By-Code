@@ -1,4 +1,3 @@
-// creating class for max heap
 class MaxHeap{
     //initialising heap array
     constructor()
@@ -7,20 +6,20 @@ class MaxHeap{
     }
 
     //inserting a new pair into the heap
-    insert(key,value)
+    insert(schedulingFactor,caseId)
     {
-        const newNode= {key, value};  //object of pair to be inserted into the heap
+        const newNode= {schedulingFactor , caseId};  //object of pair to be inserted into the heap
         this.heap.push(newNode);
         this.heapifyUp(this.heap.length - 1); //heap rearranging itself
     }
 
-    //How heap rearranges itself after insertion
+    //how heap rearranges itself after insertion
     heapifyUp(index)
     {
         while(index>0)
         {
             const parentIndex= Math.floor((index-1)/2);
-            if(this.heap[index].key > this.heap[parentIndex].key )
+            if(this.heap[index].schedulingFactor > this.heap[parentIndex].schedulingFactor )
             {
                 this.swap(index,parentIndex);
                 index=parentIndex;
@@ -32,7 +31,7 @@ class MaxHeap{
         }
     }
 
-    // Deleting the root element
+    // function for deleting the root element
     remove()
     {
         if(this.heap.length === 0)
@@ -47,17 +46,17 @@ class MaxHeap{
         return root;
     }
 
-    //How heap rearranges itself after deletion
+    //how heap rearranges itself after deletion
     heapifyDown(index) {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
         let largestIndex = index;
     
-        if (leftChildIndex < this.heap.length && this.heap[leftChildIndex].key > this.heap[largestIndex].key) {
+        if (leftChildIndex < this.heap.length && this.heap[leftChildIndex].schedulingFactor > this.heap[largestIndex].schedulingFactor) {
             largestIndex = leftChildIndex;
         }
     
-        if (rightChildIndex < this.heap.length && this.heap[rightChildIndex].key > this.heap[largestIndex].key) {
+        if (rightChildIndex < this.heap.length && this.heap[rightChildIndex].schedulingFactor > this.heap[largestIndex].schedulingFactor) {
             largestIndex = rightChildIndex;
         }
     
@@ -68,7 +67,7 @@ class MaxHeap{
         }
     }
 
-    // Swapping two index keys
+    // Swapping two index pairs
     swap(index1, index2)
     {
         const temp=this.heap[index1];
