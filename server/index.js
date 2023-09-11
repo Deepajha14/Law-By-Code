@@ -18,9 +18,9 @@ const maxHeap = new MaxHeap();
 
 // API endpoint to insert data into the max heap
 app.post('/insert', (req, res) => {
-    const { key,value } = req.body;
-    maxHeap.insert( key, value);
-    res.json({ message: 'Value inserted into the max heap' });
+    const { schedulingFactor,caseId } = req.body;
+    maxHeap.insert( schedulingFactor,caseId );
+    res.json({ message: 'pair inserted into the max heap' });
 });
 
 // API endpoint to extract the maximum value from the max heap

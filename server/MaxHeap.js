@@ -14,7 +14,7 @@ class MaxHeap{
         const queueRecord =await Schedule.findOne();
         if(queueRecord)
             this.heap =queueRecord.priorityQueue;
-        
+      
         this.heap.push(newNode);
         this.heapifyUp(this.heap.length - 1); //heap rearranging itself
         
@@ -65,7 +65,7 @@ class MaxHeap{
         return root.schedulingFactor;
     }
 
-    //How heap rearranges itself after deletion
+    //how heap rearranges itself after deletion
     heapifyDown(index) {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
@@ -86,8 +86,9 @@ class MaxHeap{
         }
     }
 
-    // Swapping two index keys
-    swap(index1, index2){
+    // Swapping two index pairs
+    swap(index1, index2)
+    {
         const temp=this.heap[index1];
         this.heap[index1]=this.heap[index2];
         this.heap[index2]=temp;
