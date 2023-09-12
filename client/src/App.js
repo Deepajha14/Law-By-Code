@@ -3,8 +3,8 @@ import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import Test from './Components/Test';
 import Navbar from "./Components/Navbar";
-import Home from "./Home";
-import TrackCase from "./TrackCase";
+import Home from "./Components/Home";
+import TrackCase from "./Components/TrackCase";
 
 function App() {
   return (
