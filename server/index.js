@@ -39,9 +39,14 @@ app.post('/search', async(req, res) => {
 
 app.get('/createSchedule', async(req,res)=>{
     const cases= await Cases.find();
-
     res.json({cases});
 })
+
+app.post('/addCase', async(req, res) => {
+    const caseData=req.body.caseData;
+    const caseRecord = await Cases.create(caseData);
+    res.json({ id: caseRecord._id });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
