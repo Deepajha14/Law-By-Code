@@ -1,13 +1,15 @@
 * {
-    /* background: #E6F3FA; */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    scroll-behavior: smooth;
-    font-family: 'Ubuntu', sans-serif;
+  /* background: #E6F3FA; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  font-family: "Ubuntu", sans-serif;
 }
 
 body {
-    background: #E6F3FA;
+  background: #e6f3fa;
+  margin: 0;
+  padding: 0;
 }

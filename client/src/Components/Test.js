@@ -46,8 +46,9 @@ const Test = () => {
   };
   
   return (
-    <>
-    <form style={{marginTop:"70px"}} onSubmit={HandleInsert}>
+    <div style={{marginTop:"70px"}}>
+    <form onSubmit={HandleInsert} >
+
       <input 
       type="number" 
       placeholder="SchedulingFactor" 
@@ -65,7 +66,7 @@ const Test = () => {
     <button onClick={HandleDelete}>delete</button>
 
     {maxElement && <p>{maxElement}</p>}
-    </>
+    </div>
   );
 }
 

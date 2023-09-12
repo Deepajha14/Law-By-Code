@@ -4,7 +4,7 @@ import { RiSearchLine } from "react-icons/ri";
 
 function TrackCase() {
   const [caseData, setCaseData] = useState({});
-  const[caseID, setCaseId]=useState();
+  const [caseID, setCaseId] = useState();
 
   const obj = {
     name: "Arushi",
@@ -16,23 +16,25 @@ function TrackCase() {
     mobileNumber: "9234667007",
   };
 
-  const handleSubmit=async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/search`,{
-      method:"POST",
+
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/search`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      credentials:"include",
+      credentials: "include",
       body: JSON.stringify({
         caseID,
       }),
-    })
-    const data =await response.json();
+
+    });
+    const data = await response.json();
 
     setCaseData(data.Case);
-  }
+  };
+
 
   return (
     <div className="mainBox">
@@ -47,9 +49,11 @@ function TrackCase() {
               name="trackingId"
               placeholder="Enter Case ID to search"
               value={caseID}
-              onChange={(e)=>{setCaseId(e.target.value)}}
+              onChange={(e) => {
+                setCaseId(e.target.value);
+              }}
             />
-            <button className="trackButton">
+            <button className="trackButton" type="submit">
               Track
             </button>
           </form>
@@ -59,7 +63,7 @@ function TrackCase() {
           <div className="caseData">
             {Object.entries(caseData).map((caseDataElement, value) => {
               return (
-                <div className="caseDataElement" key={caseDataElement[0]}>
+                <div className="caseDataElement" key={value}>
                   <span className="caseDataHeading">
                     {caseDataElement[0]} :{" "}
                   </span>
