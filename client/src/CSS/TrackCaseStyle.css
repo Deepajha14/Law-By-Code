@@ -28,7 +28,7 @@
   border: 1px solid #e0e0e0;
   border-radius: 4px 0 0 4px;
 }
-input {
+.trackCaseInput {
   width: 30vw;
   height: 50px;
   text-align: center;
@@ -46,12 +46,26 @@ input {
 .caseDetails {
   padding: 0 65px 25px;
 }
-.caseDetails h3 {
+.caseDetails h2 {
   margin-bottom: 20px;
 }
 .trackButton:hover {
   background-color: #5520bd;
 }
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
+}
+.caseData {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.caseDataElement {
+  height: auto;
+  width: auto;
+  text-transform: capitalize;
+}
+.caseDataHeading {
+  font-size: 1.1em;
 }
