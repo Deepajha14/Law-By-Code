@@ -29,7 +29,9 @@ function TrackCase() {
         caseID,
       }),
     })
-    console.log(response);
+    const data =await response.json();
+
+    setCaseData(data.Case);
   }
 
   return (

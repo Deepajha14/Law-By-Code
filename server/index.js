@@ -37,6 +37,12 @@ app.post('/search', async(req, res) => {
     res.json({ Case });
 });
 
+app.get('/createSchedule', async(req,res)=>{
+    const cases= await Cases.find();
+
+    res.json({cases});
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

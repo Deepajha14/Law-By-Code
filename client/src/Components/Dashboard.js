@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../CSS/DashboardStyle.css'
 
 export default function Dashboard() {
-    const demoData = [
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-        { dateOfHearing: "10-11-2023", caseId: "234567" },
-    ]
+    var date=new Date();
+    var month=date.getMonth();
+    var year=date.getFullYear();
+    date=date.getDate();
+    const[cases, setCases]=useState([]);
+
+    const handleSchedule=async()=>{
+        const response=await fetch(`${process.env.REACT_APP_BASE_URL}/createSchedule`,{
+            method:"GET",
+        });
+
+        const data=await response.json();
+        console.log(data.cases);
+        setCases(data.cases);
+    }
   return (
     <div className='dashboardContainer'>
         <h1 className="dashboardTitle">DASHBOARD</h1>
@@ -36,7 +38,7 @@ export default function Dashboard() {
                 <h4 className="statusOfCases">Solved Cases</h4>
             </div>
         </div>
-        <button className='generateBtn'>Generate</button>
+        <button className='generateBtn' onClick={handleSchedule}>Generate</button>
         <div className="scheduledCasesContainer">
         <table className='scheduledCasesTable'>
                 <caption className='tableHeading'>Scheduled Cases For The Week</caption>
@@ -44,14 +46,23 @@ export default function Dashboard() {
                     <th className='colHeading'>Date of Hearing</th>
                     <th className='colHeading'>Case ID</th>
                 </tr>
-                {demoData.map((val, key) => {
+                {cases.map((casedata)=>{
+                    {date=date+1}
+                    return (
+                        <tr>
+                            <td className='data'>{date + "/" + month + "/" + year}</td>
+                            <td className='data'>{casedata._id}</td>
+                        </tr>
+                    );
+                })}
+                {/* {cases.map((case, key) => (
                     return (
                         <tr key={key}>
                             <td className='data'>{val.dateOfHearing}</td>
-                            <td className='data'>{val.caseId}</td>
+                            <td className='data'>{case._id}</td>
                         </tr>
-                    )
-                })}
+                    );
+                ))} */}
             </table>
         </div>
     </div>
