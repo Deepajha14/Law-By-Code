@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const port = 3001;
 const MaxHeap = require("./MaxHeap.js");
+const Cases = require("./models/Cases.js");
 require('dotenv').config();
 
 app.use(express.json());
@@ -27,6 +28,13 @@ app.post('/insert', (req, res) => {
 app.get('/delete', async(req, res) => {
     const maxElement = await maxHeap.remove();
     res.json({ maxElement });
+});
+
+// API endpoint to search a case
+app.post('/search', async(req, res) => {
+    const caseID=req.body.caseID;
+    const Case=await Cases.findOne({_id:caseID});
+    res.json({ Case });
 });
 
 app.listen(port, () => {
