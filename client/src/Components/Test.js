@@ -48,6 +48,7 @@ const Test = () => {
   return (
     <div style={{marginTop:"70px"}}>
     <form onSubmit={HandleInsert} >
+
       <input 
       type="number" 
       placeholder="SchedulingFactor" 

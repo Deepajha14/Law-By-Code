@@ -28,11 +28,13 @@ function TrackCase() {
       body: JSON.stringify({
         caseID,
       }),
+
     });
     const data = await response.json();
 
     setCaseData(data.Case);
   };
+
 
   return (
     <div className="mainBox">
