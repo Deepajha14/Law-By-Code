@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CSS/FileCase.css";
 
 export default function FileCase() {
+  const[caseData, setCaseData]=useState({
+    name:"",
+    email:"",
+    mobileNumber: "",
+    address:"",
+    age:"",
+    // gender:"",
+  });
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    const response= await fetch(`${process.env.REACT_APP_BASE_URL}/addCase`,{
+      method:"POST",
+      credentials:"include",
+      body: JSON.stringify({
+        caseData,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data= await response.json();
+
+    if(response.ok){
+      alert("Case has been successfully registered. Your tracking ID is " + data.id + ", please save it somewhere for further tracking of case.");
+    }
+  }
   return (
     <div className="fileCase">
       <div className="row">
         <div className="col-md-12">
-          <form className="caseform" action="index.html" method="post">
+          <form className="caseform" onSubmit={handleSubmit}>
             <h1 className="formheading"> File A Case </h1>
 
             <fieldset>
@@ -20,7 +48,29 @@ export default function FileCase() {
                 type="text"
                 id="name"
                 name="user_name"
+                value={caseData.name}
+                onChange={(e)=>setCaseData({...caseData, name:e.target.value})}
               />
+              
+              <label for="age">Age:</label>
+              <input
+                className="enterinput"
+                type="number"
+                id="age"
+                name="user_age"
+                value={caseData.age}
+                onChange={(e)=>setCaseData({...caseData, age: e.target.valueAsNumber})} 
+              />
+              
+              {/* <label for="gender">Gender:</label>
+              <input
+                className="enterinput"
+                type=""
+                id="gender"
+                name="user_name"
+                value={caseData.gender}
+                onChange={(e)=>setCaseData({...caseData, gender: e.target.value})} 
+              /> */}
 
               <label for="email">Email:</label>
               <input
@@ -28,14 +78,18 @@ export default function FileCase() {
                 type="email"
                 id="mail"
                 name="user_email"
+                value={caseData.email}
+                onChange={(e)=>setCaseData({...caseData, email: e.target.value})}
               />
 
               <label for="name">Mobile No.</label>
               <input
                 className="enterinput"
-                type="text"
+                type="number"
                 id="mobile"
                 name="user_mobile"
+                value={caseData.mobileNumber}
+                onChange={(e)=>setCaseData({...caseData, mobileNumber: e.target.valueAsNumber})}
               />
 
               <label>Address:</label>
@@ -44,6 +98,8 @@ export default function FileCase() {
                 type="text"
                 id="address"
                 name="user_address"
+                value={caseData.address}
+                onChange={(e)=>setCaseData({...caseData, address: e.target.value})}
               />
 
               <fieldset />
@@ -80,7 +136,7 @@ export default function FileCase() {
               </select>
             </fieldset>
 
-            <button className="casebutton" type="submit">
+            <button className="casebutton">
               File Case
             </button>
           </form>

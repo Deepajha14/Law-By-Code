@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 const CasesSchema= new mongoose.Schema({
     name: String,
+    email: String,
     age: Number,
     gender: Boolean,
     address: String,
